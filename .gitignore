@@ -131,3 +131,9 @@ dmypy.json
 #Env
 .env
 *.env
+
+# Slackbot.egg
+slackbot.egg-info
+
+#.idea
+.idea

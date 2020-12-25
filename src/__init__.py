@@ -22,6 +22,7 @@ parser.add_option("-c", "--hours",  dest="HRS",
                   help="Timed Message ID")
 
 (options, args) = parser.parse_args()
+options = vars(options)
 
 # Slack client initialized.
 client = slack_sdk.WebClient(token=os.getenv("SLACK_TOKEN"))

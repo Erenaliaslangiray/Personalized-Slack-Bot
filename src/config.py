@@ -6,7 +6,7 @@ def edit_env():
     fist_time_setup = os.path.exists('../.env')
     vars_questions = {
         "SLACK_TOKEN":"Your Slack Token: ",
-        "SLACK_USER":"Your Slack User: @",
+        "SLACK_USER":"Your Slack User: ",
         "TIMEZONE":"Your Timezone: ",
         "REMINDER_TIME": "Reminder Time (09:00 by default) input as <HH:MM>: "
                       }
