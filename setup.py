@@ -1,9 +1,10 @@
 from setuptools import setup
+import pandas as pd
+
 
 setup(
     name='slackbot',
     version='0.0.1',
-
     entry_points={
         'console_scripts': [
             'slackbot-config = src.config:edit_env',
@@ -19,3 +20,5 @@ setup(
         ]
     }
 )
+
+pd.DataFrame(columns=["ID","TYPE","ARGS"]).to_csv("process_records.csv",index=False)

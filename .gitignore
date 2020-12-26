@@ -128,12 +128,15 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-#Env
+# Env
 .env
 *.env
 
 # Slackbot.egg
 slackbot.egg-info
 
-#.idea
+# .idea
 .idea
+
+# Process recoeds
+process_records.csv
