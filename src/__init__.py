@@ -26,7 +26,3 @@ options = vars(options)
 
 # Slack client initialized.
 client = slack_sdk.WebClient(token=os.getenv("SLACK_TOKEN"))
-
-
-
-

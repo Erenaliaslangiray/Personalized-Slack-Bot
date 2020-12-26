@@ -1,6 +1,7 @@
 import os
 
-from src import options, client
+from . import options, client
+#from src import options, client
 
 
 def send_message(message=None):
