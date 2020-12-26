@@ -1,4 +1,4 @@
-# Personalized Slack Bot
+# Personalized Slack Bot (Not Finished)
 
 -----------
 ## Installization:
