@@ -1,1 +1,1 @@
-from src import options, client
+from . import options, client

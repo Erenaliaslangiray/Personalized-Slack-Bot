@@ -18,7 +18,8 @@ setup(
             'slackbot-list_reminders = src.reminders:set_reminder',
             'slackbot-remove_reminder = src.reminders:set_reminder',
         ]
-    }
+    },
+    packages=['src']
 )
 
 pd.DataFrame(columns=["ID","TYPE","ARGS"]).to_csv("process_records.csv",index=False)

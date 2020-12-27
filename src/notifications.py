@@ -1,4 +1,4 @@
-from src import options
+from . import options
 from .message import send_message
 
 

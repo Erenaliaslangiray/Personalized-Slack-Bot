@@ -1,7 +1,7 @@
 """
 import getpass
 
-from src import options, client
+from . import options, client
 
 import pandas as pd
 from crontab import CronTab
