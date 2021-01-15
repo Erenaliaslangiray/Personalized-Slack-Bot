@@ -3,9 +3,8 @@
 -----------
 ## Installization:
 1. Clone The Repository
-2. ```pip install -r <path_to_cloned_dir>/Personalized-Slack-Bot/requirements.txt```
-3. ```pip install <path_to_cloned_dir>/Personalized-Slack-Bot```
-4. ```slackbot-config``` For configuring your slackbot token, your user and application settings.
+2. ```pip install <path_to_cloned_dir>/Personalized-Slack-Bot```
+3. ```slackbot-config``` For configuring your slackbot token, your user and application settings.
 
 ## Usage:
 Here is the list of operations available:

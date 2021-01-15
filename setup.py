@@ -19,7 +19,13 @@ setup(
             'slackbot-remove_reminder = src.reminders:set_reminder',
         ]
     },
-    packages=['src']
+    packages=['src'],
+    install_requires=[
+        'setuptools',
+        "slack-sdk",
+        "python-dotenv",
+        "pandas"
+      ],
 )
 
 pd.DataFrame(columns=["ID","TYPE","ARGS"]).to_csv("process_records.csv",index=False)
