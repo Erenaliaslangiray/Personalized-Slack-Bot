@@ -1,4 +1,6 @@
-# Personalized Slack Bot (Not Finished)
+# Personalized Slack Bot (Under Construction)
+
+#### _Version 0.0.2_
 
 -----------
 ## Installization:
@@ -6,43 +8,49 @@
 2. ```pip install <path_to_cloned_dir>/Personalized-Slack-Bot```
 3. ```slackbot-config``` For configuring your slackbot token, your user and application settings.
 
-## Usage:
-Here is the list of operations available:
+### **The package can be used with 2 different methods. An importable python3 library and as a terminal command.**
 
-* **slackbot-config**: For configuring your Slack credentials and application settings.
+## Python Usage:
+```import slackbot```
 
-* **slackbot-message**: Lets you send a message to configured user by specifying the message with ```-m 'message'```
+* **edit_env()** ---> Allows you to configure Slack credentials and application settings. (Automaticly called on the first time run.)
+* **send_message(message=None)** ---> Allows you to send specified message via bot.
+* **start_notif(message = None)** ---> Allows you to send a notification about a task being started.
+* **end_notif(message = None)** ---> Allows you to send a notification about a task being finished.
+* **set_timed_message()**_(Under Construction)_ ---> Allows you to set a timed message.
+* **list_times_messages()**_(Under Construction)_ ---> Allows you to list timed messages.
+* **remove_timed_message(tid=None)**_(Under Construction)_ ---> Allows you to remove a timed message.
+* **set_reminder()**_(Under Construction)_ ---> Allows you to set a reminder message.
+* **list_reminders()**_(Under Construction)_ ---> Allows you to list your reminder messages.
+* **remove_reminder(rid=None)**_(Under Construction)_ ---> Allows you to remove a reminder message.
 
-    Ex: ```slackbot-message -m 'Hello World, this is an example message!'```
+## Terminal Usage:
 
-* **slackbot-task_start_notif**: Sending user a notification about a process is being started. (You can optionally put a process name or specialized message by passing -m 'message' argument.)
-
-    Ex: ```slackbot-task_start_notif```
+* **slackbot-config** ---> Allows you to configure Slack credentials and application settings.
+* **slackbot-message** ---> Allows you to send specified message via bot.
   
-* **slackbot-task_end_notif**: Sending user a notification about a process is being finished. (You can optionally put a process name or specialized message by passing -m 'message' argument.)
-
-    Ex: ```slackbot-task_end_notif -m 'Main_Task'```
-
-* **slackbot-set_timed_message**: Lets user to set a timed message.
-
-    Ex: ```slackbot-set_timed_message -d '12/12/2020' -c '18:30' -m 'Did you miss me?'```
-
-* **slackbot-list_times_messages**: Lets user to list all timed messages and their *Timed Message Ids*.
-
-    Ex: ```slackbot-list_times_messages```
-
-* **slackbot-remove_timed_message**: Let user to remove messages in queue by providing *Timed Message Id* with ```-t <TMID>```.
-
+  Ex: ```slackbot-message -m 'Hello World, this is an example message!'```
+* **slackbot-task_start_notif** ---> Allows you to send a notification about a task being started.
+  
+  Ex: ```slackbot-task_start_notif```
+* **slackbot-task_end_notif** ---> Allows you to send a notification about a task being finished.
+  
+  Ex: ```slackbot-task_end_notif -m 'Main_Task'```
+* **slackbot-set_timed_message**_(Under Construction)_ ---> Allows you to set a timed message.
+  
+  Ex: ```slackbot-set_timed_message -d '12/12/2020' -c '18:30' -m 'Did you miss me?'```
+* **slackbot-list_times_messages**_(Under Construction)_ ---> Allows you to list timed messages.
+  
+    Ex: ```slackbot-list_timed_messages```
+* **slackbot-remove_timed_message**_(Under Construction)_ ---> Allows you to remove a timed message.
+  
     Ex: ```slackbot-remove_timed_message -t 13```
-
-* **slackbot-set_reminder**: Sets reminders that will be sent to user at every day 09:00 by default.
-
+* **slackbot-set_reminder**_(Under Construction)_ ---> Allows you to set a reminder message.
+  
     Ex: ```slackbot-set_reminder -m 'Don't forget to remember what you always forget.```
-
-* **slackbot-list_reminders**: Lets user to list all reminders and their *Reminder Ids*.
-
+* **slackbot-list_reminders**_(Under Construction)_ ---> Allows you to list your reminder messages.
+  
     Ex: ```slackbot-list_reminders```
-
-* **slackbot-remove_reminder**: Let user to remove a reminder from the list by providing *Reminder ID* with ```-r <RID>```.
-
+* **slackbot-remove_reminder**_(Under Construction)_ ---> Allows you to remove a reminder message.
     Ex: ```slackbot-remove_reminder -r 7```
+  

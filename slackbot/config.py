@@ -40,7 +40,7 @@ def edit_env():
                     else:
                         print("You can't enter blank entry at first time setup")
 
-    f = open("../.env","w")
+    f = open("./.env","w")
     for key in vars_answers:
         if vars_answers[key] is None:
             f.write("{0} = '{1}'\r\n".format(key,os.getenv(key)))
@@ -50,4 +50,4 @@ def edit_env():
 
 def is_env_available():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    return os.path.exists('../.env')
+    return os.path.exists('./.env')
