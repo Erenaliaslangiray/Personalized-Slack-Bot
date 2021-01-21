@@ -4,7 +4,7 @@
 
 -----------
 ## Installization:
-1. Clone The Repository
+1. Clone the Repository
 2. ```pip install <path_to_cloned_dir>/Personalized-Slack-Bot```
 3. ```slackbot-config``` For configuring your slackbot token, your user and application settings.
 
@@ -13,8 +13,8 @@
 ## Python Usage:
 ```import slackbot```
 
-* **edit_env()** ---> Allows you to configure Slack credentials and application settings. (Automaticly called on the first time run.)
-* **send_message(message=None)** ---> Allows you to send specified message via bot.
+* **edit_env()** ---> Allows you to configure Slack credentials and application settings. (Automatically called on the first time run.)
+* **send_message(message=None)** ---> Allows you to send a specified message via the bot.
 * **start_notif(message = None)** ---> Allows you to send a notification about a task being started.
 * **end_notif(message = None)** ---> Allows you to send a notification about a task being finished.
 * **set_timed_message()**_(Under Construction)_ ---> Allows you to set a timed message.
@@ -27,7 +27,7 @@
 ## Terminal Usage:
 
 * **slackbot-config** ---> Allows you to configure Slack credentials and application settings.
-* **slackbot-message** ---> Allows you to send specified message via bot.
+* **slackbot-message** ---> Allows you to send a specified message via the bot.
   
   Ex: ```slackbot-message -m 'Hello World, this is an example message!'```
 * **slackbot-task_start_notif** ---> Allows you to send a notification about a task being started.
