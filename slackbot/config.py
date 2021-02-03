@@ -49,5 +49,5 @@ def edit_env():
 
 
 def is_env_available():
-    answer = os.path.exists(os.path.dirname(os.path.abspath(__file__))+'/.env')
+    answer = os.path.exists(os.path.dirname(os.path.realpath(__file__))+'/.env')
     return answer
