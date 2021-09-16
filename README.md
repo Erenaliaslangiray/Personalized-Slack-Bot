@@ -18,7 +18,7 @@
 * **start_notif(message = None)** ---> Allows you to send a notification about a task being started.
 * **end_notif(message = None)** ---> Allows you to send a notification about a task being finished.
 * **set_timed_message()**_(Still in development...)_ ---> Allows you to set a timed message.
-* **list_times_messages()**_(Still in development...)_ ---> Allows you to list timed messages.
+* **list_timed_messages()**_(Still in development...)_ ---> Allows you to list timed messages.
 * **remove_timed_message(tid=None)**_(Still in development...)_ ---> Allows you to remove a timed message.
 * **set_reminder()**_(Still in development...)_ ---> Allows you to set a reminder message.
 * **list_reminders()**_(Still in development...)_ ---> Allows you to list your reminder messages.
