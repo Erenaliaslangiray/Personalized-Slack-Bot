@@ -140,3 +140,6 @@ slackbot.egg-info
 
 # Process recoeds
 process_records.csv
+
+.DS_Store
+*.DS_Store
