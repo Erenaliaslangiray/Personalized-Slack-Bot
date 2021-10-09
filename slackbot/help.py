@@ -15,7 +15,7 @@ def help():
     print("start_notif(message = None) ---> Allows you to send a notification about a task being started.")
     print("end_notif(message = None) ---> Allows you to send a notification about a task being finished.")
     print("set_timed_message() ---> Allows you to set a timed message.")
-    print("list_times_messages() ---> Allows you to list timed messages.")
+    print("list_times_message() ---> Allows you to list timed messages.")
     print("remove_timed_message(tid=None) ---> Allows you to remove a timed message.")
     print("set_reminder() ---> Allows you to set a reminder message.")
     print("list_reminders() ---> Allows you to list your reminder messages.")

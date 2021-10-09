@@ -1,3 +1,5 @@
+from . import options
+from slackbot import message, timed_message
 
 
 def help():
@@ -15,10 +17,48 @@ def help():
     print("slackbot-task_start_notif ---> Allows you to send a notification about a task being started.")
     print("slackbot-task_end_notif ---> Allows you to send a notification about a task being finished.")
     print("slackbot-set_timed_message ---> Allows you to set a timed message.")
-    print("slackbot-list_times_messages ---> Allows you to list timed messages.")
+    print("slackbot-list_timed_message ---> Allows you to list timed messages.")
     print("slackbot-remove_timed_message ---> Allows you to remove a timed message.")
     print("slackbot-set_reminder ---> Allows you to set a reminder message.")
-    print("slackbot-list_reminders ---> Allows you to list your reminder messages.")
+    print("slackbot-list_reminder ---> Allows you to list your reminder messages.")
     print("slackbot-remove_reminder ---> Allows you to remove a reminder message.")
     print("")
+
+
+def message_wrapper():
+    message.send_message(options["MES"])
+
+
+def start_notif_wrapper():
+    if options["MES"] is None:
+        message.send_message("Process is started! 🏎 💨")
+    else:
+        message.send_message("Process with name: {} is started! 🏎 💨".format(options["MES"]))
+
+
+def end_notif_wrapper():
+    if options["MES"] is None:
+        message.send_message("Process is finished! 🏁 ✅")
+    else:
+        message.send_message("Process with name: {} is finished! 🏁 ✅".format(options["MES"]))
+
+
+def set_timed_message_wrapper():
+    timed_message.set_timed_message(date=options["DAT"],
+                                    hour=options["TME"],
+                                    message=options["MES"])
+
+
+def list_timed_message_wrapper():
+    if options["PID"] is None:
+        timed_message.list_timed_message()
+    else:
+        timed_message.list_timed_message(pid=options["PID"])
+
+
+def remove_timed_message_wrapper():
+    if options["PID"] is None:
+        timed_message.remove_timed_message(remove_all=options["RMA"])
+    else:
+        timed_message.remove_timed_message(pid=options["PID"])
 

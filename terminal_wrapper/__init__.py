@@ -4,14 +4,15 @@ from optparse import OptionParser
 parser = OptionParser()
 parser.add_option("-m", "--message", dest="MES",
                   help="Message text")
-parser.add_option("-r", "--reminder_id",  dest="RID",
-                  help="Reminder ID")
-parser.add_option("-t", "--timed_message_id",  dest="TID",
-                  help="Timed Message ID")
+parser.add_option("-p", "--pid",  dest="PID",
+                  help="Process ID")
 parser.add_option("-d", "--date",  dest="DAT",
-                  help="Timed Message Date")
-parser.add_option("-c", "--hours",  dest="HRS",
-                  help="Timed Message Hours")
+                  help="Date")
+parser.add_option("-t", "--time",  dest="TME",
+                  help="Time as hour.")
+parser.add_option("-r", "--removeall",  dest="RMA",
+                  help="Removes all current active tasks of called function's category.",
+                  action="store_true")
 
 (options, args) = parser.parse_args()
 options = vars(options)

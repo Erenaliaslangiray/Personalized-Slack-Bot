@@ -6,21 +6,20 @@ def edit_env():
     vars_questions = {
         "SLACK_TOKEN":"Your Slack Token: ",
         "SLACK_USER":"Your Slack User: @",
-        "TIMEZONE":"Your Timezone: ",
-        "REMINDER_TIME": "Reminder Time (09:00 by default) input as <HH:MM>: "
+        "REMINDER_TIME": "Reminder Time (09:00 by default) input as <HH:MM>: ",
+        "SHELL": "Please enter your shell that slackbot is configured as 'bin/zsh'(Optional): ",
+        "SLACKBOT_PATH": "Please enter executable slackbot location "
+                         "(You can use output of 'where slackbot')(Optional): ",
                       }
     vars_answers = {}
     if first_time_setup:
         print("Entered edit mode. Please leave blank if you do not wish to update setting.")
         for key in vars_questions:
             answer = input(vars_questions[key])
-
             if len(answer) == 0:
                 answer = None
-
             if answer is not None and key == "SLACK_USER" and not answer.startswith("@"):
                 answer = "@"+answer
-
             vars_answers[key] = answer
     else:
         print("Detected first time setup!")
@@ -36,6 +35,9 @@ def edit_env():
                 else:
                     if key == "REMINDER_TIME":
                         vars_answers[key] = "09:00"
+                        valid = True
+                    if key in ["SHELL","SLACKBOT_PATH"]:
+                        vars_answers[key] = "-"
                         valid = True
                     else:
                         print("You can't enter blank entry at first time setup")
