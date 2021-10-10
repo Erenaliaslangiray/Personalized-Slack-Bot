@@ -1,16 +1,12 @@
 import subprocess
 import getpass
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta
 import os
 
 from crontab import CronTab
 
 
-def set_timed_message(
-        date: str = None,
-        hour: str = None,
-        message: str = None
-):
+def set_timed_message(date: str = None, hour: str = None, message: str = None):
     """
     date: Date input from user. Expected format is: d/m/Y. Can also be 'today' or 'tomorrow'.
     hour: Hour input from user. Expected format is: H:M.
@@ -30,7 +26,9 @@ def set_timed_message(
             else:
                 date = str((datetime.now() + timedelta(days=1)).date()).split("-")[::-1]
     except:
-        print("ERROR : Wrong date input. Date must be specified in d/m/Y format. (Ex: -d 31/12/2021)")
+        print(
+            "ERROR : Wrong date input. Date must be specified in d/m/Y format. (Ex: -d 31/12/2021)"
+        )
         return
     try:
         assert len(hour.split(":")) == 2
@@ -38,30 +36,48 @@ def set_timed_message(
         assert len(hour.split(":")[1]) == 2
         hour = hour.split(":")
     except:
-        print("ERROR : Wrong hour input. Hour must be specified in H:M format. (Ex: -t 14:59)")
+        print(
+            "ERROR : Wrong hour input. Hour must be specified in H:M format. (Ex: -t 14:59)"
+        )
         return
     if message is None:
-        print("ERROR : Message is None. Please provide message text. (Ex. -m 'hello world')")
+        print(
+            "ERROR : Message is None. Please provide message text. (Ex. -m 'hello world')"
+        )
         return
 
     latest_id = list_timed_message(last=True) + 1
     exec_command = ""
-    if os.getenv("SLACKBOT_PATH") not in ["-", "", None,"None"]:
+    if os.getenv("SLACKBOT_PATH") not in ["-", "", None, "None"]:
         exec_command = os.getenv("SLACKBOT_PATH") + "-message"
-        print(1, exec_command,os.getenv("SLACKBOT_PATH"))
+        print(1, exec_command, os.getenv("SLACKBOT_PATH"))
 
-    elif os.getenv("USED-SHELL") not in ["-", "", None,"None"]:
-        exec_command = subprocess.run('where slackbot-message',
-                                      shell=True,
-                                      executable=os.getenv("USED-SHELL"),
-                                      capture_output=True).stdout.decode('utf-8').replace("\n", "")
-        print(2, exec_command,os.getenv("USED-SHELL"))
+    elif os.getenv("USED-SHELL") not in ["-", "", None, "None"]:
+        exec_command = (
+            subprocess.run(
+                "where slackbot-message",
+                shell=True,
+                executable=os.getenv("USED-SHELL"),
+                capture_output=True,
+            )
+            .stdout.decode("utf-8")
+            .replace("\n", "")
+        )
+        print(2, exec_command, os.getenv("USED-SHELL"))
     else:
         for env in ["bin/zsh", "bin/bash"]:
             try:
-                exec_command = subprocess.run('where slackbot-message', shell=True, executable=env,
-                                          capture_output=True).stdout.decode('utf-8').replace("\n", "")
-                print(3,env,exec_command)
+                exec_command = (
+                    subprocess.run(
+                        "where slackbot-message",
+                        shell=True,
+                        executable=env,
+                        capture_output=True,
+                    )
+                    .stdout.decode("utf-8")
+                    .replace("\n", "")
+                )
+                print(3, env, exec_command)
             except:
                 continue
             if len(exec_command) > 1:
@@ -70,14 +86,19 @@ def set_timed_message(
     if len(exec_command) == 0:
         print("ERROR : Executeable slackbot path is not found.")
         print(
-            "Please provide your shell env that slackbot installed or provide slackbot location by calling slackbot-config.")
+            "Please provide your shell env that slackbot installed or provide slackbot location by calling slackbot-config."
+        )
         return
 
     print(4, exec_command)
     cron = CronTab(getpass.getuser())
-    job = cron.new(command="{0} -m '{1}' -f {2}".format(exec_command, message,latest_id),
-                   comment="{'PID':" + str(latest_id) + ",'PTP':'T'}")
-    job.setall(datetime(int(date[2]), int(date[1]), int(date[0]), int(hour[0]), int(hour[1])))
+    job = cron.new(
+        command="{0} -m '{1}' -f {2}".format(exec_command, message, latest_id),
+        comment="{'PID':" + str(latest_id) + ",'PTP':'T'}",
+    )
+    job.setall(
+        datetime(int(date[2]), int(date[1]), int(date[0]), int(hour[0]), int(hour[1]))
+    )
     cron.write()
 
     print("SUCCESS: Timed message is set as")
@@ -111,9 +132,16 @@ def list_timed_message(pid: int = None, last: bool = False):
             cron = ""
             for p in job.slices:
                 cron += str(p) + " "
-            job_info = {**eval(job.comment),
-                        **{"MESSAGE": job.command.split("-m")[-1:][0].replace("'", "").strip().split("-f")[0]},
-                        **{"CRON": cron.strip()}}
+            job_info = {
+                **eval(job.comment),
+                **{
+                    "MESSAGE": job.command.split("-m")[-1:][0]
+                    .replace("'", "")
+                    .strip()
+                    .split("-f")[0]
+                },
+                **{"CRON": cron.strip()},
+            }
             jobs.append(job_info)
 
     else:
@@ -123,9 +151,16 @@ def list_timed_message(pid: int = None, last: bool = False):
             cron = ""
             for p in job.slices:
                 cron += str(p) + " "
-            job_info = {**eval(job.comment),
-                        **{"MESSAGE": job.command.split("-m")[-1:][0].replace("'", "").strip().split("-f")[0]},
-                        **{"CRON": cron.strip()}}
+            job_info = {
+                **eval(job.comment),
+                **{
+                    "MESSAGE": job.command.split("-m")[-1:][0]
+                    .replace("'", "")
+                    .strip()
+                    .split("-f")[0]
+                },
+                **{"CRON": cron.strip()},
+            }
             jobs.append(job_info)
 
     for j in jobs:
@@ -139,8 +174,10 @@ def list_timed_message(pid: int = None, last: bool = False):
 def remove_timed_message(pid: int = None, remove_all=False):
     if remove_all:
         ans = "a"
-        while ans not in ["y","n"]:
-            ans = input("WARNING: You are going to remove ALL slackbot-timed messages. Please confirm: [y/n] ").lower()
+        while ans not in ["y", "n"]:
+            ans = input(
+                "WARNING: You are going to remove ALL slackbot-timed messages. Please confirm: [y/n] "
+            ).lower()
         if ans == "n":
             print("ABORTED!")
             return False
@@ -166,6 +203,3 @@ def remove_timed_message(pid: int = None, remove_all=False):
 
     print("SUCCESS: Process with ID {0} has removed from tasks list.".format(pid))
     return True
-
-
-
