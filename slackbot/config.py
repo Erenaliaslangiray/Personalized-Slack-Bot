@@ -20,7 +20,7 @@ def edit_env():
         )
         for key in vars_questions:
             answer = input(
-                vars_questions[key] + "(Current value: " + os.getenv(key) + ")"
+                vars_questions[key] + "(Current value: " + str(os.getenv(key)) + ")"
             )
             if len(answer) == 0:
                 answer = None
