@@ -47,7 +47,9 @@ def set_timed_message(date: str = None, hour: str = None, message: str = None):
         )
         return
 
-    timezoned_datetime = timezone_converter(date,hour,eval(os.getenv("PREF_TIMEZONE")))
+    timezoned_datetime = timezone_converter(
+        date, hour, eval(os.getenv("PREF_TIMEZONE"))
+    )
 
     latest_id = list_timed_message(last=True) + 1
     exec_command = ""
@@ -95,9 +97,7 @@ def set_timed_message(date: str = None, hour: str = None, message: str = None):
         command="{0} -m '{1}' -f {2}".format(exec_command, message, latest_id),
         comment="{'PID':" + str(latest_id) + ",'PTP':'T'}",
     )
-    job.setall(
-        timezoned_datetime
-    )
+    job.setall(timezoned_datetime)
     cron.write()
 
     print("SUCCESS: Timed message is set as")
@@ -189,7 +189,7 @@ def remove_timed_message(pid: int = None, remove_all=False):
         else:
             last_id = list_timed_message(last=True)
             cron = CronTab(user=getpass.getuser())
-            for i in range(last_id+1):
+            for i in range(last_id + 1):
                 for job in cron.find_comment("{'PID':" + str(i) + ",'PTP':'T'}"):
                     job.delete()
                     cron.write()
@@ -214,8 +214,13 @@ def remove_timed_message(pid: int = None, remove_all=False):
 
 
 def timezone_converter(inpt_date, inpt_hour, pref_offset):
-    curr_datetime = datetime(int(inpt_date[2]), int(inpt_date[1]), int(inpt_date[0]), int(inpt_hour[0]),
-                             int(inpt_hour[1]))
+    curr_datetime = datetime(
+        int(inpt_date[2]),
+        int(inpt_date[1]),
+        int(inpt_date[0]),
+        int(inpt_hour[0]),
+        int(inpt_hour[1]),
+    )
 
     local_offset = time.localtime().tm_gmtoff / (60 * 60)
     diff_offset = local_offset - pref_offset
