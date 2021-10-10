@@ -13,6 +13,7 @@ if not is_env_available():
     edit_env()
 if is_env_outdated():
     print("WARNING: Config parameters are outdated.")
+    edit_env()
 
 load_dotenv(dotenv_path=os.path.dirname(os.path.realpath(__file__)) + "/.env")
 
