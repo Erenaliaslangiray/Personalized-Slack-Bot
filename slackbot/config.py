@@ -15,11 +15,14 @@ def edit_env():
     if first_time_setup:
         print("Entered edit mode. Please leave blank if you do not wish to update setting.")
         for key in vars_questions:
-            answer = input(vars_questions[key])
+            answer = input(vars_questions[key] + "(Current value: "+os.getenv(key)+")")
             if len(answer) == 0:
                 answer = None
-            if answer is not None and key == "SLACK_USER" and not answer.startswith("@"):
+            elif answer is not None and key == "SLACK_USER" and not answer.startswith("@"):
                 answer = "@"+answer
+            elif key in ["USED_SHELL", "SLACKBOT_PATH"] and answer is None:
+                vars_answers[key] = "-"
+
             vars_answers[key] = answer
     else:
         print("Detected first time setup!")
@@ -27,19 +30,16 @@ def edit_env():
             valid = False
             while valid is False:
                 answer = input(vars_questions[key])
-                print(answer)
                 if len(answer) > 0:
                     if key == "SLACK_USER" and not answer.startswith("@"):
                         answer = "@"+answer
                     vars_answers[key] = answer
                     valid = True
                 else:
-                    print("in else")
                     if key == "REMINDER_TIME":
                         vars_answers[key] = "09:00"
                         valid = True
                     elif key in ["USED_SHELL","SLACKBOT_PATH"]:
-                        print("in ansss")
                         vars_answers[key] = "-"
                         valid = True
                     else:
