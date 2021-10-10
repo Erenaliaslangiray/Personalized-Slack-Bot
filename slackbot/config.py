@@ -7,7 +7,7 @@ def edit_env():
         "SLACK_TOKEN":"Your Slack Token: ",
         "SLACK_USER":"Your Slack User: @",
         "REMINDER_TIME": "Reminder Time (09:00 by default) input as <HH:MM>: ",
-        "SHELL": "Please enter your shell that slackbot is configured as 'bin/zsh'(Optional): ",
+        "USED_SHELL": "Please enter your shell that slackbot is configured as 'bin/zsh'(Optional): ",
         "SLACKBOT_PATH": "Please enter executable slackbot location "
                          "(You can use output of 'where slackbot')(Optional): ",
                       }
@@ -36,7 +36,7 @@ def edit_env():
                     if key == "REMINDER_TIME":
                         vars_answers[key] = "09:00"
                         valid = True
-                    if key in ["SHELL","SLACKBOT_PATH"]:
+                    if key in ["USED_SHELL","SLACKBOT_PATH"]:
                         vars_answers[key] = "-"
                         valid = True
                     else:
