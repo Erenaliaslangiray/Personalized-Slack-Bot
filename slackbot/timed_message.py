@@ -125,10 +125,9 @@ def list_timed_message(pid: int = None, last: bool = False):
                 if eval(job.comment)["PID"] > latest_id:
                     latest_id = eval(job.comment)["PID"]
         return latest_id
-
+    cron = ""
     if pid is not None:
         for job in cron.find_comment("{'PID':" + str(pid) + ",'PTP':'T'}"):
-            cron = ""
             for p in job.slices:
                 cron += str(p) + " "
             job_info = {
@@ -145,9 +144,12 @@ def list_timed_message(pid: int = None, last: bool = False):
 
     else:
         for job in cron:
-            if eval(job.comment)["PTP"] != "T":
+            try:
+                if eval(job.comment)["PTP"] != "T":
+                    continue
+            except:
                 continue
-            cron = ""
+
             for p in job.slices:
                 cron += str(p) + " "
             job_info = {
