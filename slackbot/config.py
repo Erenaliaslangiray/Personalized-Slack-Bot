@@ -27,16 +27,19 @@ def edit_env():
             valid = False
             while valid is False:
                 answer = input(vars_questions[key])
+                print(answer)
                 if len(answer) > 0:
                     if key == "SLACK_USER" and not answer.startswith("@"):
                         answer = "@"+answer
                     vars_answers[key] = answer
                     valid = True
                 else:
+                    print("in else")
                     if key == "REMINDER_TIME":
                         vars_answers[key] = "09:00"
                         valid = True
-                    if key in ["USED_SHELL","SLACKBOT_PATH"]:
+                    elif key in ["USED_SHELL","SLACKBOT_PATH"]:
+                        print("in ansss")
                         vars_answers[key] = "-"
                         valid = True
                     else:
