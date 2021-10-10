@@ -13,6 +13,7 @@ parser.add_option("-t", "--time",  dest="TME",
 parser.add_option("-r", "--removeall",  dest="RMA",
                   help="Removes all current active tasks of called function's category.",
                   action="store_true")
+parser.add_option("-f","--fromtimed", dest="FRT")
 
 (options, args) = parser.parse_args()
 options = vars(options)

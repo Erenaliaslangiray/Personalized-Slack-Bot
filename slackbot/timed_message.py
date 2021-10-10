@@ -30,7 +30,7 @@ def set_timed_message(
             else:
                 date = str((datetime.now() + timedelta(days=1)).date()).split("-")[::-1]
     except:
-        print("ERROR : Wrong date input. Date must be specified in d/m/Y format. (Ex: 31/12/2021)")
+        print("ERROR : Wrong date input. Date must be specified in d/m/Y format. (Ex: -d 31/12/2021)")
         return
     try:
         assert len(hour.split(":")) == 2
@@ -38,10 +38,10 @@ def set_timed_message(
         assert len(hour.split(":")[1]) == 2
         hour = hour.split(":")
     except:
-        print("ERROR : Wrong hour input. Hour must be specified in H:M format. (Ex: 14:59)")
+        print("ERROR : Wrong hour input. Hour must be specified in H:M format. (Ex: -t 14:59)")
         return
     if message is None:
-        print("ERROR : Message is None. Please provide message text.")
+        print("ERROR : Message is None. Please provide message text. (Ex. -m 'hello world')")
         return
 
     latest_id = list_timed_message(last=True) + 1
@@ -68,7 +68,7 @@ def set_timed_message(
         return
 
     cron = CronTab(getpass.getuser())
-    job = cron.new(command="{0} -m '{1}' --cron".format(exec_command, message),
+    job = cron.new(command="{0} -m '{1}' -f {2}".format(exec_command, message,latest_id),
                    comment="{'PID':" + str(latest_id) + ",'PTP':'T'}")
     job.setall(datetime(int(date[2]), int(date[1]), int(date[0]), int(hour[0]), int(hour[1])))
     cron.write()
@@ -105,7 +105,7 @@ def list_timed_message(pid: int = None, last: bool = False):
             for p in job.slices:
                 cron += str(p) + " "
             job_info = {**eval(job.comment),
-                        **{"MESSAGE": job.command.split("-m")[-1:][0].replace("'", "").strip()},
+                        **{"MESSAGE": job.command.split("-m")[-1:][0].replace("'", "").strip().split("-f")[0]},
                         **{"CRON": cron.strip()}}
             jobs.append(job_info)
 
@@ -117,7 +117,7 @@ def list_timed_message(pid: int = None, last: bool = False):
             for p in job.slices:
                 cron += str(p) + " "
             job_info = {**eval(job.comment),
-                        **{"MESSAGE": job.command.split("-m")[-1:][0].replace("'", "").strip()},
+                        **{"MESSAGE": job.command.split("-m")[-1:][0].replace("'", "").strip().split("-f")[0]},
                         **{"CRON": cron.strip()}}
             jobs.append(job_info)
 

@@ -26,7 +26,7 @@ def help():
 
 
 def message_wrapper():
-    message.send_message(options["MES"])
+    message.send_message(options["MES"],options["FRT"])
 
 
 def start_notif_wrapper():
