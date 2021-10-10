@@ -48,16 +48,19 @@ def set_timed_message(
 
     if os.getenv("SLACKBOT_PATH") not in ["-", "", None]:
         exec_command = os.getenv("SLACKBOT_PATH") + "-message"
+        print(exec_command)
 
     elif os.getenv("SHELL") not in ["-", "", None]:
         exec_command = subprocess.run('where slackbot-message',
                                       shell=True,
                                       executable=os.getenv("SHELL"),
                                       capture_output=True).stdout.decode('utf-8').replace("\n", "")
+        print(exec_command)
     else:
         for env in ["bin/zsh", "bin/bash"]:
             exec_command = subprocess.run('where slackbot-message', shell=True, executable=env,
                                           capture_output=True).stdout.decode('utf-8').replace("\n", "")
+            print(env,exec_command)
             if len(exec_command) > 1:
                 break
 
@@ -67,6 +70,7 @@ def set_timed_message(
             "Please provide your shell env that slackbot installed or provide slackbot location by calling slackbot-config.")
         return
 
+    print(exec_command)
     cron = CronTab(getpass.getuser())
     job = cron.new(command="{0} -m '{1}' -f {2}".format(exec_command, message,latest_id),
                    comment="{'PID':" + str(latest_id) + ",'PTP':'T'}")
@@ -159,3 +163,6 @@ def remove_timed_message(pid: int = None, remove_all=False):
 
     print("SUCCESS: Process with ID {0} has removed from tasks list.".format(pid))
     return True
+
+
+

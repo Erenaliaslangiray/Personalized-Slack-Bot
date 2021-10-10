@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from .config import edit_env,is_env_available
 from .help import help
 
+__version__ = "0.1.0"
 
 if not is_env_available():
     print("WARNING: Environment is not set.")

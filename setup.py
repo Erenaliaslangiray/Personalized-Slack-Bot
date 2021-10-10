@@ -1,11 +1,13 @@
 from setuptools import setup,find_packages
 
+__version__ = "0.1.0"
+
 with open('requirements.txt') as f:
     required = f.read().splitlines()
 
 setup(
     name='slackbot',
-    version='0.1.0',
+    version=__version__,
     entry_points={
         'console_scripts': [
             'slackbot = terminal_wrapper.wrapper:help',
