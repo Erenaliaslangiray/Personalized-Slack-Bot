@@ -3,17 +3,17 @@ import os
 import slack_sdk
 from dotenv import load_dotenv
 
-from .config import edit_env, is_env_available, is_env_outdated
+from .config import edit_conf, is_env_available, is_env_outdated
 from .help import help
 
 __version__ = "0.1.0"
 
 if not is_env_available():
     print("WARNING: Config parameters are not set.")
-    edit_env()
+    edit_conf()
 if is_env_outdated():
     print("WARNING: Config parameters are outdated.")
-    edit_env()
+    edit_conf()
 
 load_dotenv(dotenv_path=os.path.dirname(os.path.realpath(__file__)) + "/.env")
 

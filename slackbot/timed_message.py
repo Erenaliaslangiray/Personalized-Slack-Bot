@@ -53,7 +53,6 @@ def set_timed_message(date: str = None, hour: str = None, message: str = None):
     exec_command = ""
     if os.getenv("SLACKBOT_PATH") not in ["-", "", None, "None"]:
         exec_command = os.getenv("SLACKBOT_PATH") + "-message"
-        print(1, exec_command, os.getenv("SLACKBOT_PATH"))
 
     elif os.getenv("USED-SHELL") not in ["-", "", None, "None"]:
         exec_command = (
@@ -66,7 +65,6 @@ def set_timed_message(date: str = None, hour: str = None, message: str = None):
             .stdout.decode("utf-8")
             .replace("\n", "")
         )
-        print(2, exec_command, os.getenv("USED-SHELL"))
     else:
         for env in ["bin/zsh", "bin/bash"]:
             try:
@@ -80,7 +78,6 @@ def set_timed_message(date: str = None, hour: str = None, message: str = None):
                     .stdout.decode("utf-8")
                     .replace("\n", "")
                 )
-                print(3, env, exec_command)
             except:
                 continue
             if len(exec_command) > 1:
@@ -93,7 +90,6 @@ def set_timed_message(date: str = None, hour: str = None, message: str = None):
         )
         return
 
-    print(4, exec_command)
     cron = CronTab(getpass.getuser())
     job = cron.new(
         command="{0} -m '{1}' -f {2}".format(exec_command, message, latest_id),
@@ -186,7 +182,10 @@ def remove_timed_message(pid: int = None, remove_all=False):
             return False
         else:
             cron = CronTab(user=getpass.getuser())
-            cron.remove_all()
+            last_id = list_timed_message(last=True)
+            for i in range(last_id+1):
+                for job in cron.find_comment("{'PID':" + str(pid) + ",'PTP':'T'}"):
+                    job.delete()
             cron.write()
             return True
 

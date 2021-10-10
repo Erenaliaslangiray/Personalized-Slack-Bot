@@ -14,7 +14,7 @@
 ```import slackbot```
 
 ### 1. Editing Configuration:
-* **edit_env()** ---> Allows you to configure Slack credentials and application settings. (Automatically called on the first time run.)
+* **edit_conf()** ---> Allows you to configure Slack credentials and application settings. (Automatically called on the first time run.)
 
 ### 2. Sending Instant Messages & Notifications:
 * **send_message(message)** ---> Allows you to send a specified message via the bot.

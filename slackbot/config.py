@@ -12,7 +12,7 @@ vars_questions = {
 }
 
 
-def edit_env():
+def edit_conf():
     vars_answers = {}
     if is_env_available():
         print(
