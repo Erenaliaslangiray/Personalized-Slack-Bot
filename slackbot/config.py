@@ -18,7 +18,7 @@ def edit_env():
             answer = input(vars_questions[key] + "(Current value: "+os.getenv(key)+")")
             if len(answer) == 0:
                 answer = None
-            elif answer is not None and key == "SLACK_USER" and not answer.startswith("@"):
+            if answer is not None and key == "SLACK_USER" and not answer.startswith("@"):
                 answer = "@"+answer
             elif key in ["USED_SHELL", "SLACKBOT_PATH"] and answer is None:
                 vars_answers[key] = "-"
