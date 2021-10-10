@@ -15,8 +15,7 @@ def send_message(message=None,from_timed=None):
         else:
             client.chat_postMessage(channel=os.getenv("SLACK_USER"), text=message)
 
-    client.chat_postMessage(channel=os.getenv("SLACK_USER"), text=from_timed)
     if from_timed is not None:
-        client.chat_postMessage(channel=os.getenv("SLACK_USER"), text="inside")
+        client.chat_postMessage(channel=os.getenv("SLACK_USER"), text=from_timed)
         result = remove_timed_message(pid=from_timed)
         client.chat_postMessage(channel=os.getenv("SLACK_USER"), text=result)
