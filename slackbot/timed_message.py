@@ -187,12 +187,12 @@ def remove_timed_message(pid: int = None, remove_all=False):
             print("ABORTED!")
             return False
         else:
-            cron = CronTab(user=getpass.getuser())
             last_id = list_timed_message(last=True)
+            cron = CronTab(user=getpass.getuser())
             for i in range(last_id+1):
                 for job in cron.find_comment("{'PID':" + str(pid) + ",'PTP':'T'}"):
                     job.delete()
-            cron.write()
+                    cron.write()
             return True
 
     if pid is not None:
