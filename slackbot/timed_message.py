@@ -45,7 +45,7 @@ def set_timed_message(
         return
 
     latest_id = list_timed_message(last=True) + 1
-
+    exec_command = ""
     if os.getenv("SLACKBOT_PATH") not in ["-", "", None,"None"]:
         exec_command = os.getenv("SLACKBOT_PATH") + "-message"
         print(1, exec_command,os.getenv("SLACKBOT_PATH"))
@@ -58,9 +58,12 @@ def set_timed_message(
         print(2, exec_command,os.getenv("USED-SHELL"))
     else:
         for env in ["bin/zsh", "bin/bash"]:
-            exec_command = subprocess.run('where slackbot-message', shell=True, executable=env,
+            try:
+                exec_command = subprocess.run('where slackbot-message', shell=True, executable=env,
                                           capture_output=True).stdout.decode('utf-8').replace("\n", "")
-            print(3,env,exec_command)
+                print(3,env,exec_command)
+            except:
+                continue
             if len(exec_command) > 1:
                 break
 
