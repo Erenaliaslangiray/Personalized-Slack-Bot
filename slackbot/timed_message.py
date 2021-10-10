@@ -190,7 +190,7 @@ def remove_timed_message(pid: int = None, remove_all=False):
             last_id = list_timed_message(last=True)
             cron = CronTab(user=getpass.getuser())
             for i in range(last_id+1):
-                for job in cron.find_comment("{'PID':" + str(pid) + ",'PTP':'T'}"):
+                for job in cron.find_comment("{'PID':" + str(i) + ",'PTP':'T'}"):
                     job.delete()
                     cron.write()
             return True
