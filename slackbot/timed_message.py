@@ -119,7 +119,10 @@ def list_timed_message(pid: int = None, last: bool = False):
     if last:
         latest_id = 0
         for job in cron:
-            if eval(job.comment)["PTP"] != "T":
+            try:
+                if eval(job.comment)["PTP"] != "T":
+                    continue
+            except:
                 continue
             else:
                 if eval(job.comment)["PID"] > latest_id:
