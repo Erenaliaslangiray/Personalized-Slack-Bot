@@ -2,6 +2,7 @@ import subprocess
 import getpass
 from datetime import datetime, timedelta
 import os
+import time
 
 from crontab import CronTab
 
@@ -23,7 +24,7 @@ def set_timed_message(date: str = None, hour: str = None, message: str = None):
         else:
             if date.upper() == "TODAY":
                 date = str(datetime.now().date()).split("-")[::-1]
-            else:
+            elif date.upper() == "TOMORROW":
                 date = str((datetime.now() + timedelta(days=1)).date()).split("-")[::-1]
     except:
         print(
@@ -45,6 +46,8 @@ def set_timed_message(date: str = None, hour: str = None, message: str = None):
             "ERROR : Message is None. Please provide message text. (Ex. -m 'hello world')"
         )
         return
+
+    timezoned_datetime = timezone_converter(date,hour,eval(os.getenv("PREF_TIMEZONE")))
 
     latest_id = list_timed_message(last=True) + 1
     exec_command = ""
@@ -97,7 +100,7 @@ def set_timed_message(date: str = None, hour: str = None, message: str = None):
         comment="{'PID':" + str(latest_id) + ",'PTP':'T'}",
     )
     job.setall(
-        datetime(int(date[2]), int(date[1]), int(date[0]), int(hour[0]), int(hour[1]))
+        timezoned_datetime
     )
     cron.write()
 
@@ -203,3 +206,20 @@ def remove_timed_message(pid: int = None, remove_all=False):
 
     print("SUCCESS: Process with ID {0} has removed from tasks list.".format(pid))
     return True
+
+
+def timezone_converter(inpt_date, inpt_hour, pref_offset):
+    curr_datetime = datetime(int(inpt_date[2]), int(inpt_date[1]), int(inpt_date[0]), int(inpt_hour[0]),
+                             int(inpt_hour[1]))
+
+    local_offset = time.localtime().tm_gmtoff / (60 * 60)
+    diff_offset = local_offset - pref_offset
+
+    if diff_offset > 0:
+        new_datetime = curr_datetime + timedelta(hours=abs(diff_offset))
+    elif diff_offset < 0:
+        new_datetime = curr_datetime - timedelta(hours=abs(diff_offset))
+    else:
+        return curr_datetime
+
+    return new_datetime
