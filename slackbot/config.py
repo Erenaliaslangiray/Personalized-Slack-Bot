@@ -2,7 +2,6 @@ import os
 
 
 def edit_env():
-    first_time_setup = is_env_available()
     vars_questions = {
         "SLACK_TOKEN":"Your Slack Token: ",
         "SLACK_USER":"Your Slack User: @",
@@ -12,7 +11,7 @@ def edit_env():
                          "(You can use output of 'where slackbot')(Optional): ",
                       }
     vars_answers = {}
-    if first_time_setup:
+    if is_env_available():
         print("Entered edit mode. Please leave blank if you do not wish to update setting.")
         for key in vars_questions:
             answer = input(vars_questions[key] + "(Current value: "+os.getenv(key)+")")
@@ -20,9 +19,6 @@ def edit_env():
                 answer = None
             if answer is not None and key == "SLACK_USER" and not answer.startswith("@"):
                 answer = "@"+answer
-            elif key in ["USED_SHELL", "SLACKBOT_PATH"] and answer is None:
-                vars_answers[key] = "-"
-
             vars_answers[key] = answer
     else:
         print("Detected first time setup!")

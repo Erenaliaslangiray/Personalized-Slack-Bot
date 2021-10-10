@@ -46,16 +46,16 @@ def set_timed_message(
 
     latest_id = list_timed_message(last=True) + 1
 
-    if os.getenv("SLACKBOT_PATH") not in ["-", "", None]:
+    if os.getenv("SLACKBOT_PATH") not in ["-", "", None,"None"]:
         exec_command = os.getenv("SLACKBOT_PATH") + "-message"
         print(1, exec_command,os.getenv("SLACKBOT_PATH"))
 
-    elif os.getenv("SHELL") not in ["-", "", None]:
+    elif os.getenv("USED-SHELL") not in ["-", "", None,"None"]:
         exec_command = subprocess.run('where slackbot-message',
                                       shell=True,
-                                      executable=os.getenv("SHELL"),
+                                      executable=os.getenv("USED-SHELL"),
                                       capture_output=True).stdout.decode('utf-8').replace("\n", "")
-        print(2, exec_command,os.getenv("SHELL"))
+        print(2, exec_command,os.getenv("USED-SHELL"))
     else:
         for env in ["bin/zsh", "bin/bash"]:
             exec_command = subprocess.run('where slackbot-message', shell=True, executable=env,
@@ -137,7 +137,7 @@ def remove_timed_message(pid: int = None, remove_all=False):
     if remove_all:
         ans = "a"
         while ans not in ["y","n"]:
-            ans = input("WARNING: You are going to remove ALL timed messages. Please confirm: [y/n] ").lower()
+            ans = input("WARNING: You are going to remove ALL slackbot-timed messages. Please confirm: [y/n] ").lower()
         if ans == "n":
             print("ABORTED!")
             return False
