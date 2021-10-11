@@ -6,22 +6,24 @@ import time
 from crontab import CronTab
 
 
-def set_reminder(hour: str = None, message: str = None):
+def set_reminder(message: str = None, hour: str = None):
     """
-    hour: Hour input from user. Expected format is: H:M.
+    hour (optional): Hour input from user. Expected format is: H:M.
     message: Message for slackbot to send you when time comes. Any string input is ok.
     """
-
-    try:
-        assert len(hour.split(":")) == 2
-        assert len(hour.split(":")[0]) == 2
-        assert len(hour.split(":")[1]) == 2
-        hour = hour.split(":")
-    except:
-        print(
-            "ERROR : Wrong hour input. Hour must be specified in H:M format. (Ex: -t 14:59)"
-        )
-        return
+    if hour is not None:
+        try:
+            assert len(hour.split(":")) == 2
+            assert len(hour.split(":")[0]) == 2
+            assert len(hour.split(":")[1]) == 2
+            hour = hour.split(":")
+        except:
+            print(
+                "ERROR : Wrong hour input. Hour must be specified in H:M format. (Ex: -t 14:59)"
+            )
+            return
+    else:
+        hour = os.getenv("REMINDER_TIME").split(":")
     if message is None:
         print(
             "ERROR : Message is None. Please provide message text. (Ex. -m 'hello world')"
