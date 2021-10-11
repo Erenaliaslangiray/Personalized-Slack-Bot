@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 with open("requirements.txt") as f:
     required = f.read().splitlines()
@@ -18,9 +18,9 @@ setup(
             "slackbot-set_timed_message = terminal_wrapper.wrapper:set_timed_message_wrapper",
             "slackbot-list_timed_message = terminal_wrapper.wrapper:list_timed_message_wrapper",
             "slackbot-remove_timed_message = terminal_wrapper.wrapper:remove_timed_message_wrapper",
-            "slackbot-set_reminder = terminal_wrapper.wrapper:set_reminder_wrapper",
-            "slackbot-list_reminder = terminal_wrapper.wrapper:set_reminder_wrapper",
-            "slackbot-remove_reminder = terminal_wrapper.wrapper:set_reminder_wrapper",
+            "slackbot-set_reminder = terminal_wrapper.wrapper:set_reminder_message_wrapper",
+            "slackbot-list_reminder = terminal_wrapper.wrapper:list_reminder_message_wrapper",
+            "slackbot-remove_reminder = terminal_wrapper.wrapper:remove_reminder_message_wrapper",
         ]
     },
     packages=find_packages(),

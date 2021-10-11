@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from .config import edit_conf, is_env_available, is_env_outdated
 from .help import help
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 if not is_env_available():
     print("WARNING: Config parameters are not set.")
@@ -22,5 +22,5 @@ client = slack_sdk.WebClient(token=os.getenv("SLACK_TOKEN"))
 
 from .message import send_message
 from .notifications import start_notif, end_notif
-from .reminders import *
+from .reminder_message import *
 from .timed_message import *

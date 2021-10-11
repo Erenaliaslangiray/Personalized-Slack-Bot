@@ -1,5 +1,5 @@
 from . import options
-from slackbot import message, timed_message
+from slackbot import message, timed_message, reminder_message
 
 
 def help():
@@ -87,3 +87,21 @@ def remove_timed_message_wrapper():
         timed_message.remove_timed_message(remove_all=options["RMA"])
     else:
         timed_message.remove_timed_message(pid=options["PID"])
+
+
+def set_reminder_message_wrapper():
+    reminder_message.set_reminder(message=options["MES"], hour=options["TME"])
+
+
+def list_reminder_message_wrapper():
+    if options["PID"] is None:
+        reminder_message.list_reminder_message()
+    else:
+        reminder_message.list_reminder_message(pid=options["PID"])
+
+
+def remove_reminder_message_wrapper():
+    if options["PID"] is None:
+        reminder_message.remove_reminder_message(remove_all=options["RMA"])
+    else:
+        reminder_message.remove_reminder_message(pid=options["PID"])
