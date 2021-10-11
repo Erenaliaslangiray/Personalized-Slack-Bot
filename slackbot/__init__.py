@@ -22,5 +22,5 @@ client = slack_sdk.WebClient(token=os.getenv("SLACK_TOKEN"))
 
 from .message import send_message
 from .notifications import start_notif, end_notif
-from .reminders import *
+from .reminder_message import *
 from .timed_message import *

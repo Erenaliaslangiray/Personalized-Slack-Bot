@@ -30,9 +30,7 @@ def set_reminder(message: str = None, hour: str = None):
         )
         return
 
-    timezoned_hour = reminder_timezone_converter(
-        hour, eval(os.getenv("PREF_TIMEZONE"))
-    )
+    timezoned_hour = reminder_timezone_converter(hour, eval(os.getenv("PREF_TIMEZONE")))
 
     latest_id = list_reminder_message(last=True) + 1
 
