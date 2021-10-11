@@ -27,9 +27,9 @@
 * **remove_timed_message(PID = None, remove_all = False)** ---> Allows you to remove a/all timed messages.
 
 ### 4. Sending Recurred Messages:
-* **set_reminder()**_(Still in development...)_ ---> Allows you to set a reminder message.
-* **list_reminder()**_(Still in development...)_ ---> Allows you to list your reminder messages.
-* **remove_reminder(PID=None)**_(Still in development...)_ ---> Allows you to remove a/all reminder message.
+* **set_reminder(message,hour = None)** ---> Allows you to set a reminder message.
+* **list_reminder(PID = None)** ---> Allows you to list your reminder messages.
+* **remove_reminder(PID=None, remove_all = False)** ---> Allows you to remove a/all reminder message.
 
 ## Terminal Usage:
 
@@ -68,12 +68,16 @@
     Ex: ```slackbot-remove_timed_message -r``` _Wipes out all timed messages._
 
 ### 4. Sending Recurred Messages:
-* **slackbot-set_reminder**_(Still in development...)_ ---> Allows you to set a reminder message.
+* **slackbot-set_reminder** ---> Allows you to set a reminder message.
   
     Ex: ```slackbot-set_reminder -m 'Don't forget to remember what you always forget.```
-* **slackbot-list_reminder**_(Still in development...)_ ---> Allows you to list your reminder messages.
+* **slackbot-list_reminder** ---> Allows you to list your reminder messages.
   
     Ex: ```slackbot-list_reminder```
-* **slackbot-remove_reminder**_(Still in development...)_ ---> Allows you to remove a reminder message.
-    Ex: ```slackbot-remove_reminder -r 7```
+* **slackbot-remove_reminder** ---> Allows you to remove a reminder message.
+
+    Ex: ```slackbot-remove_reminder -r```
+    
+    Ex: ```slackbot-remove_reminder -p 6```
+
   
