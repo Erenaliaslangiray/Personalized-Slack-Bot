@@ -16,3 +16,4 @@ def send_message(message=None, from_timed=None):
             client.chat_postMessage(channel=os.getenv("SLACK_USER"), text=message)
             if from_timed is not None:
                 result = remove_timed_message(pid=from_timed)
+                return result
