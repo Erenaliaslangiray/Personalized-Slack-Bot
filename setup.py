@@ -11,7 +11,7 @@ setup(
     entry_points={
         "console_scripts": [
             "slackbot = terminal_wrapper.wrapper:help",
-            "slackbot-config = slackbot.config:edit_env",
+            "slackbot-config = slackbot.config:edit_conf",
             "slackbot-message = terminal_wrapper.wrapper:message_wrapper",
             "slackbot-task_start_notif = terminal_wrapper.wrapper:start_notif_wrapper",
             "slackbot-task_end_notif = terminal_wrapper.wrapper:end_notif_wrapper",
