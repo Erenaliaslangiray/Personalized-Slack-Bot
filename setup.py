@@ -2,11 +2,8 @@ from setuptools import setup, find_packages
 
 __version__ = "0.2.2"
 
-with open("requirements.txt") as f:
-    required = f.read().splitlines()
-
 setup(
-    name="slackbot",
+    name="personalized-slack-bot",
     version=__version__,
     license="MIT",
     author="Eren Ali Aslangiray",
@@ -28,5 +25,5 @@ setup(
     packages=find_packages("src"),
     package_dir={"":"src"},
     url = "https://github.com/Erenaliaslangiray/Personalized-Slack-Bot",
-    install_requires=required,
+    install_requires=['setuptools ==57.4.0', 'slack-sdk == 3.1.0', 'python-dotenv == 0.19.0', 'python-crontab == 2.5.1'],
 )
