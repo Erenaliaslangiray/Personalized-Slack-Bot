@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 
 with open("requirements.txt") as f:
     required = f.read().splitlines()
@@ -25,8 +25,8 @@ setup(
             "slackbot-remove_reminder = terminal_wrapper.wrapper:remove_reminder_message_wrapper",
         ]
     },
-    packages=find_packages("slackbot"),
-    package_dir={"":"slackbot"},
+    packages=find_packages("src"),
+    package_dir={"":"src"},
     url = "https://github.com/Erenaliaslangiray/Personalized-Slack-Bot",
     install_requires=required,
 )

@@ -1,6 +1,6 @@
 # Personalized Slack Bot
 
-#### _Version 0.2.1_
+#### _Version 0.2.2_
 
 -----------
 ## Installization:

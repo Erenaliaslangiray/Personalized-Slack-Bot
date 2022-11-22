@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from .config import edit_conf, is_env_available, is_env_outdated
 from .help import help
 
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 
 if not is_env_available():
     print("WARNING: Config parameters are not set.")
