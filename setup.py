@@ -8,6 +8,8 @@ with open("requirements.txt") as f:
 setup(
     name="slackbot",
     version=__version__,
+    license="MIT",
+    author="Eren Ali Aslangiray",
     entry_points={
         "console_scripts": [
             "slackbot = terminal_wrapper.wrapper:help",
@@ -23,6 +25,8 @@ setup(
             "slackbot-remove_reminder = terminal_wrapper.wrapper:remove_reminder_message_wrapper",
         ]
     },
-    packages=find_packages(),
+    packages=find_packages("slackbot"),
+    package_dir={"":"slackbot"},
+    url = "https://github.com/Erenaliaslangiray/Personalized-Slack-Bot",
     install_requires=required,
 )
