@@ -5,7 +5,7 @@
 </p>
 
 #### _Version 0.2.3_
-
+_[PyPI Page](https://pypi.org/project/personalized-slack-bot/)_
 -----------
 ## Installization:
 1. ```pip install personalized-slack-bot```
