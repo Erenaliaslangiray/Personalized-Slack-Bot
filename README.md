@@ -1,6 +1,8 @@
 # Personalized Slack Bot
 
-![Alt text](images/psb.png)
+<p align="center">
+  <img src="images/psb.png" alt="Image Alt Text">
+</p>
 
 #### _Version 0.2.3_
 
