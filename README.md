@@ -1,5 +1,7 @@
 # Personalized Slack Bot
 
+![Alt text](images/psb.png)
+
 #### _Version 0.2.3_
 
 -----------
